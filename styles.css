@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&family=Prompt:wght@400;700&family=Kanit:wght@400;700&family=IBM+Plex+Sans+Thai:wght@400;700&display=swap');
+
+body {
+    font-family: 'Sarabun', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    align-items: flex-start;
+}
+
+.card-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 20px;
+}
+
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.photo-upload-area {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 18px;
+    top: 78px;
+    background: rgba(200,200,200,0.5);
+    border: 2px dashed #666;
+    border-radius: 8px;
+}
+
+.input-group {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #444;
+}
+
+.font-controls {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.color-picker {
+    width: 50px;
+    height: 35px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.font-size-control {
+    width: 80px !important;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.card-text {
+    position: absolute;
+    color: white;
+}
+
+#nameText { top: 285px; left: 110px; }
+#heightText { top: 325px; left: 325px; }
+#ageText { top: 372px; left: 100px; }
+#weightText { top: 415px; left: 330px; }
+#genderText { top: 460px; left: 120px; }
+#phraseText {
+    position: absolute;
+    right: 12px;
+    top: 180px;
+    width: 200px;
+    text-align: center;
+    line-height: 1.5;
+}

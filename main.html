@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IC Card Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h2>แก้ไขข้อมูล IC Card</h2>
+
+        <!-- Global Font Controls -->
+        <div class="input-group">
+            <label>ฟอนต์:</label>
+            <select id="globalFont" onchange="updateGlobalFont()">
+                <option value="Sarabun">Sarabun</option>
+                <option value="Prompt">Prompt</option>
+                <option value="Kanit">Kanit</option>
+                <option value="IBM Plex Sans Thai">IBM Plex Sans Thai</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>สีตัวอักษร:</label>
+            <input type="color" id="globalColor" class="color-picker" value="#FFFFFF" onchange="updateGlobalColor()">
+        </div>
+
+        <div class="input-group">
+            <label>ขนาดตัวอักษร:</label>
+            <input type="number" id="globalFontSize" class="font-size-control" value="16" min="8" max="72" onchange="updateGlobalFontSize()">
+        </div>
+
+        <div class="input-group">
+            <label>รูปประจำตัว:</label>
+            <input type="file" id="profilePhoto" accept="image/*">
+        </div>
+
+        <div class="input-group">
+            <label>วลีประจำตัว:</label>
+            <textarea id="phrase" placeholder="กรอกวลีประจำตัว"></textarea>
+            <div class="font-controls">
+                <select id="phraseFont" onchange="updateTextStyle('phraseText')">
+                    <option value="Sarabun">Sarabun</option>
+                    <option value="Prompt">Prompt</option>
+                    <option value="Kanit">Kanit</option>
+                    <option value="IBM Plex Sans Thai">IBM Plex Sans Thai</option>
+                </select>
+                <input type="color" class="color-picker" id="phraseColor" value="#FFFFFF" onchange="updateTextStyle('phraseText')">
+                <input type="number" id="phraseFontSize" class="font-size-control" value="16" min="8" max="72" onchange="updateTextStyle('phraseText')">
+            </div>
+        </div>
+
+        <!-- Repeat for other fields with font controls -->
+        <div class="input-group">
+            <label>ชื่อ:</label>
+            <input type="text" id="name" placeholder="กรอกชื่อ">
+            <div class="font-controls">
+                <select id="nameFont" onchange="updateTextStyle('nameText')">
+                    <!-- Font options -->
+                </select>
+                <input type="color" class="color-picker" id="nameColor" value="#FFFFFF" onchange="updateTextStyle('nameText')">
+                <input type="number" id="nameFontSize" class="font-size-control" value="16" min="8" max="72" onchange="updateTextStyle('nameText')">
+            </div>
+        </div>
+
+        <!-- Add similar controls for height, age, weight, gender -->
+        <div class="input-group">
+            <label>ส่วนสูง:</label>
+            <input type="text" id="height" placeholder="กรอกส่วนสูง">
+        </div>
+
+        <div class="input-group">
+            <label>อายุ:</label>
+            <input type="text" id="age" placeholder="กรอกอายุ">
+        </div>
+
+        <div class="input-group">
+            <label>น้ำหนัก:</label>
+            <input type="text" id="weight" placeholder="กรอกน้ำหนัก">
+        </div>
+
+        <div class="input-group">
+            <label>เพศ:</label>
+            <input type="text" id="gender" placeholder="กรอกเพศ">
+        </div>
+
+    </div>
+
+    <div id="card" class="card-container">
+        <div id="profilePhotoArea" class="photo-upload-area"></div>
+        <div id="phraseText" class="card-text"></div>
+        <div id="nameText" class="card-text"></div>
+        <div id="heightText" class="card-text"></div>
+        <div id="ageText" class="card-text"></div>
+        <div id="weightText" class="card-text"></div>
+        <div id="genderText" class="card-text"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
