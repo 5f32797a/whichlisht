@@ -139,4 +139,10 @@ button:hover {
     width: 200px;
     text-align: center;
     line-height: 1.5;
+    max-height: 80px; /* Set maximum height */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
 }

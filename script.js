@@ -2,20 +2,26 @@
 document.getElementById('name').addEventListener('input', function() {
     document.getElementById('nameText').textContent = this.value;
 });
+
 document.getElementById('height').addEventListener('input', function() {
     document.getElementById('heightText').textContent = this.value;
 });
+
 document.getElementById('age').addEventListener('input', function() {
     document.getElementById('ageText').textContent = this.value;
 });
+
 document.getElementById('weight').addEventListener('input', function() {
     document.getElementById('weightText').textContent = this.value;
 });
+
 document.getElementById('gender').addEventListener('input', function() {
     document.getElementById('genderText').textContent = this.value;
 });
+
 document.getElementById('phrase').addEventListener('input', function() {
     document.getElementById('phraseText').textContent = this.value;
+    adjustPhraseText();
 });
 
 // Handle image upload
@@ -36,6 +42,30 @@ function handleImageUpload(e, areaId) {
         };
         reader.readAsDataURL(file);
     }
+}
+
+// Text overflow handling for phrase
+function adjustPhraseText() {
+    const phraseText = document.getElementById('phraseText');
+    const phrase = document.getElementById('phrase').value;
+
+    // Start with the current font size
+    let fontSize = parseInt(document.getElementById('phraseFontSize').value);
+    phraseText.style.fontSize = `${fontSize}px`;
+    phraseText.textContent = phrase;
+
+    // Check if text overflows and reduce font size if needed
+    while (
+        (phraseText.scrollHeight > phraseText.clientHeight ||
+            phraseText.scrollWidth > phraseText.clientWidth) &&
+        fontSize > 8
+        ) {
+        fontSize--;
+        phraseText.style.fontSize = `${fontSize}px`;
+    }
+
+    // Update the font size input if it was adjusted
+    document.getElementById('phraseFontSize').value = fontSize;
 }
 
 // Update global font
@@ -75,6 +105,8 @@ function updateGlobalFontSize() {
     document.querySelectorAll('input[type="number"].font-size-control').forEach(input => {
         input.value = document.getElementById('globalFontSize').value;
     });
+    // Check phrase text overflow after global font size change
+    adjustPhraseText();
 }
 
 // Update individual text style
@@ -93,7 +125,18 @@ function updateTextStyle(elementId) {
     if (fontSizeInput) {
         element.style.fontSize = fontSizeInput.value + 'px';
     }
+
+    // If this is the phrase text, adjust for overflow
+    if (elementId === 'phraseText') {
+        adjustPhraseText();
+    }
 }
+
+// Add event listeners for font size changes
+document.getElementById('phraseFontSize').addEventListener('change', function() {
+    updateTextStyle('phraseText');
+    adjustPhraseText();
+});
 
 // Save as PNG with improved quality
 function saveAsPNG() {
@@ -133,4 +176,21 @@ window.onload = function() {
     updateGlobalFont();
     updateGlobalColor();
     updateGlobalFontSize();
+
+    // Add event listeners for all text input fields
+    const textInputs = ['name', 'height', 'age', 'weight', 'gender', 'phrase'];
+    textInputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', function() {
+                const textElement = document.getElementById(id + 'Text');
+                if (textElement) {
+                    textElement.textContent = this.value;
+                    if (id === 'phrase') {
+                        adjustPhraseText();
+                    }
+                }
+            });
+        }
+    });
 };

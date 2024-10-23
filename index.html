@@ -59,7 +59,10 @@
             <input type="text" id="name" placeholder="กรอกชื่อ">
             <div class="font-controls">
                 <select id="nameFont" onchange="updateTextStyle('nameText')">
-                    <!-- Font options -->
+                    <option value="Sarabun">Sarabun</option>
+                    <option value="Prompt">Prompt</option>
+                    <option value="Kanit">Kanit</option>
+                    <option value="IBM Plex Sans Thai">IBM Plex Sans Thai</option>
                 </select>
                 <input type="color" class="color-picker" id="nameColor" value="#FFFFFF" onchange="updateTextStyle('nameText')">
                 <input type="number" id="nameFontSize" class="font-size-control" value="16" min="8" max="72" onchange="updateTextStyle('nameText')">
